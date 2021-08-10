@@ -11,6 +11,9 @@ import {OrderDetailComponent} from "./pages/order-detail/order-detail.component"
 import {ProductListComponent} from "./pages/product-list/product.list.component";
 import {UserDetailComponent} from "./pages/user-edit/user-detail.component";
 import {ProductEditComponent} from "./pages/product-edit/product-edit.component";
+import { ProductosComponent } from './productos/productos.component';
+import { InventarioComponent } from './inventario/inventario.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 import {Role} from "./enum/Role";
 
 const routes: Routes = [
@@ -27,6 +30,9 @@ const routes: Routes = [
     {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
     {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
     {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
+    {path: 'productos', component: ProductosComponent},
+    {path: 'inventario', component: InventarioComponent},
+    {path: 'pedidos', component: PedidosComponent},
     {
         path: 'seller/product',
         component: ProductListComponent,
@@ -50,6 +56,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {roles: [Role.Employee]}
     },
+
 
 ];
 

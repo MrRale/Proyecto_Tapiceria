@@ -1,15 +1,16 @@
-<h1 align="center" class="display-4 mb-5">Carrito de compras</h1>
+
+<h1 align="center" class="display-4 mb-5">Inventario</h1>
 
 <!--Cart Detail Table-->
 <table class="table table-striped text-center">
     <thead>
     <tr>
-        <th scope="col">Imagen</th>
+        <th scope="col">Código</th>
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
         <th scope="col">Cantidad</th>
-        <th scope="col">Subtotal</th>
-        <th scope="col">Action</th>
+        <th scope="col">Descripcion</th>
+       
 
     </tr>
     </thead>
@@ -53,7 +54,7 @@
     <button (click)="checkout()" class="btn btn-warning float-right">Checkout</button>
 </div>
 <ng-template #empty>
-    <h4 class="text-muted text-center">Aún no has agregado nada a tu carrito</h4>
+    <h4 class="text-muted text-center">Tu inventario esta vacío</h4>
 </ng-template>
 
 
