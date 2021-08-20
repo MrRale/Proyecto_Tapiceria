@@ -1,0 +1,40 @@
+<body>
+        
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+              <tr> 
+              <th scope="col">#Producto</th>
+              <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Existencia</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody> 
+              <tr *ngFor="let ps of productostock; let i = index"> 
+               <td>{{i+1}}</td>
+                <td colspan>{{ps.codigo}}</td>
+                <td colspan>{{ps.nombre}}</td>
+                <td colspan>{{ps.precio}}</td>
+                <td colspan>{{ps.existencia}}</td>
+                <td colspan><img style="width: 250px;" src="{{ps.foto}}"></td>
+                <td colspan>
+                    <input type="number"  placeholder="ingrese la cantidad" >
+                </td>
+                <td colspan>
+                    <button (click)="comprar(ps)">Comprar</button>
+                </td>
+              
+              
+              </tr>    
+            </tbody>
+          </table>         
+    </div>
+   
+</body>
+
+
+

@@ -1,60 +1,94 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; 
 
-import {AppComponent} from './app.component';
-import {NavigationComponent} from './parts/navigation/navigation.component';
-import {CardComponent} from './pages/card/card.component';
-import {PaginationComponent} from './parts/pagination/pagination.component';
-import {AppRoutingModule} from './app-routing.module';
-import {LoginComponent} from './pages/login/login.component';
-import {SignupComponent} from './pages/signup/signup.component';
-import {DetailComponent} from './pages/product-detail/detail.component';
-import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {CartComponent} from './pages/cart/cart.component';
-import {CookieService} from "ngx-cookie-service";
-import {ErrorInterceptor} from "./_interceptors/error-interceptor.service";
-import {JwtInterceptor} from "./_interceptors/jwt-interceptor.service";
-import {OrderComponent} from './pages/order/order.component';
-import {OrderDetailComponent} from './pages/order-detail/order-detail.component';
-import {ProductListComponent} from './pages/product-list/product.list.component';
-import {UserDetailComponent} from './pages/user-edit/user-detail.component';
-import {ProductEditComponent} from './pages/product-edit/product-edit.component';
-import { ProductosComponent } from './productos/productos.component';
-import { InventarioComponent } from './inventario/inventario.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MyNavComponent } from './shared/components/my-nav/my-nav.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material.module';
+import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { NewArticuloComponent } from "./components/articulos/new-articulo/new-articulo.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { EditArticuloComponent } from './components/articulos/edit-articulo/edit-articulo.component';
+import { EditArticuloModule } from './components/articulos/edit-articulo/edit-articulo.module';
+import { ModalPComponent } from './shared/components/modal-p/modal-p.component';
+import { ModalUComponent } from './shared/components/modal-u/modal-u.component';
+import { UsuarioComponent } from './components/usuarios/usuario/usuario.component';
+import { NewUsuarioModule } from './components/usuarios/new-usuario/new-usuario.module';
+import { EditUsuarioModule } from './components/usuarios/edit-usuario/edit-usuario.module';
+import { EditPedidoModule } from './components/pedidos/edit-pedido/edit-pedido.module';
+import { NewPedidoModule } from './components/pedidos/new-pedido/new-pedido.module';
+import { PedidoComponent } from './components/pedidos/pedido/pedido.component';
+import { NewPedidoComponent } from './components/pedidos/new-pedido/new-pedido.component';
+import { EditPedidoComponent } from './components/pedidos/edit-pedido/edit-pedido.component';
+import { EditUsuarioComponent } from './components/usuarios/edit-usuario/edit-usuario.component';
+import { NewUsuarioComponent } from './components/usuarios/new-usuario/new-usuario.component';
+import { ModalMiComponent } from './shared/components/modal-mi/modal-mi.component';
+import { NewComponent } from './components/pages/mis-pedidos/new/new.component';
+import { CatalogComponent } from './components/auth/catalog/catalog.component';
+import { ProductosComponent } from './components/pages/productos/productos.component';
+import { CarritoComponent } from './components/pages/carrito/carrito.component';
+import { ListProductsComponent } from './components/pages/productos/list-products/list-products.component';
+import { DetailProductComponent } from './components/pages/productos/detail-product/detail-product.component';
+
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavigationComponent,
-        CardComponent,
-        PaginationComponent,
-        LoginComponent,
-        SignupComponent,
-        DetailComponent,
-        CartComponent,
-        OrderComponent,
-        OrderDetailComponent,
-        ProductListComponent,
-        UserDetailComponent,
-        ProductEditComponent,
-        ProductosComponent,
-        InventarioComponent,
-        PedidosComponent,
+  declarations: [
+    AppComponent,
+    MyNavComponent,
+    ContainerAppComponent,
+    ModalComponent,
+    NewArticuloComponent,
+    EditArticuloComponent,
+    ModalPComponent,
+    ModalUComponent,
+    UsuarioComponent,
+    PedidoComponent,
+    NewPedidoComponent,
+    EditPedidoComponent,
+    EditUsuarioComponent,
+    NewUsuarioComponent,
+    ModalMiComponent,
+    NewComponent,
+    CatalogComponent,
+    ProductosComponent,
+    CarritoComponent,
+    ListProductsComponent,
+    DetailProductComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    EditArticuloModule,
+    NewUsuarioModule,
+    EditUsuarioModule,
+    EditPedidoModule,
+    NewPedidoModule,
+ 
 
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-
-    ],
-    providers: [CookieService,
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
-    bootstrap: [AppComponent]
+  ],
+  entryComponents: [ModalComponent, ModalUComponent, ModalPComponent, ModalMiComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

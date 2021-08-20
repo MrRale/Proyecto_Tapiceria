@@ -1,71 +1,96 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {CardComponent} from './pages/card/card.component';
-import {LoginComponent} from './pages/login/login.component';
-import {SignupComponent} from './pages/signup/signup.component';
-import {DetailComponent} from './pages/product-detail/detail.component';
-import {CartComponent} from './pages/cart/cart.component';
-import {AuthGuard} from "./_guards/auth.guard";
-import {OrderComponent} from "./pages/order/order.component";
-import {OrderDetailComponent} from "./pages/order-detail/order-detail.component";
-import {ProductListComponent} from "./pages/product-list/product.list.component";
-import {UserDetailComponent} from "./pages/user-edit/user-detail.component";
-import {ProductEditComponent} from "./pages/product-edit/product-edit.component";
-import { ProductosComponent } from './productos/productos.component';
-import { InventarioComponent } from './inventario/inventario.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
-import {Role} from "./enum/Role";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Routes, RouterModule } from "@angular/router";
+import { ContainerAppComponent } from "./components/pages/container-app/container-app.component";
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/product', pathMatch: 'full'},
-    {path: 'product/:id', component: DetailComponent},
-    {path: 'category/:id', component: CardComponent},
-    {path: 'product', component: CardComponent},
-    {path: 'category', component: CardComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'logout', component: LoginComponent},
-    {path: 'register', component: SignupComponent},
-    {path: 'cart', component: CartComponent},
-    {path: 'success', component: SignupComponent},
-    {path: 'order/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
-    {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
-    {path: 'seller', redirectTo: 'seller/product', pathMatch: 'full'},
-    {path: 'productos', component: ProductosComponent},
-    {path: 'inventario', component: InventarioComponent},
-    {path: 'pedidos', component: PedidosComponent},
-    {
-        path: 'seller/product',
-        component: ProductListComponent,
-        canActivate: [AuthGuard],
-        data: {roles: [Role.Manager, Role.Employee]}
-    },
-    {
-        path: 'profile',
-        component: UserDetailComponent,
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'seller/product/:id/edit',
-        component: ProductEditComponent,
-        canActivate: [AuthGuard],
-        data: {roles: [Role.Manager, Role.Employee]}
-    },
-    {
-        path: 'seller/product/:id/new',
-        component: ProductEditComponent,
-        canActivate: [AuthGuard],
-        data: {roles: [Role.Employee]}
-    },
-
-
+  {
+    path: "",
+    component: ContainerAppComponent,
+    children: [
+      {
+        path: "home",
+        loadChildren: () =>
+          import("./components/pages/home/home.module").then(
+            (m) => m.HomeModule
+          ),
+      },
+      {
+        path: "mis-pedidos",
+        canActivate:[AuthGuard],
+        loadChildren: () =>
+          import("./components/pages/mis-pedidos/mis-pedidos.module").then(
+            (m) => m.MisPedidosModule
+          ),
+      },
+      {
+        path: "help",
+        loadChildren: () =>
+          import("./components/pages/help/help.module").then(
+            (m) => m.HelpModule
+          ),
+      },
+      {
+        path: "login",
+        loadChildren: () =>
+          import("./components/auth/login/login.module").then((m) => m.LoginModule),
+      },
+      {
+        path: "register",
+        loadChildren: () =>
+          import("./components/auth/register/register.module").then(
+            (m) => m.RegisterModule
+          ),
+      },
+      {
+        path: "catalog",
+        loadChildren: () =>
+          import("./components/auth/catalog/catalog.module").then(
+            (m) => m.CatalogModule
+          ),
+      },
+      {
+      path: "productos",
+        loadChildren: () =>
+          import("./components/pages/productos/productos.module").then(
+            (m) => m.ProductosModule
+          ),
+      },
+      {
+        path: "carrito",
+          loadChildren: () =>
+            import("./components/pages/carrito/carrito.module").then(
+              (m) => m.CarritoModule
+            ),
+        },
+      {
+        path: "",
+        redirectTo: "home",
+        pathMatch: "full",
+      },
+    ],
+  },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./components/admin/admin.module").then((m) => m.AdminModule),
+  },
+  {
+    path: "mis-pedidos",
+    loadChildren: () =>
+      import("./components/pages/mis-pedidos/mis-pedidos.module").then(
+        (m) => m.MisPedidosModule
+      ),
+  },
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        RouterModule.forRoot(routes)//{onSameUrlNavigation: 'reload'}
-    ],
-    exports: [RouterModule]
+  imports: [BrowserModule, RouterModule.forRoot(routes), 
+    FormsModule, ReactiveFormsModule
+  ],
+
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
